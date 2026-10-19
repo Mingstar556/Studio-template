@@ -1,0 +1,335 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------
+   VISIBILITY STUDIO — DESIGN SYSTEM & TOKENS
+   Colors:
+     Primary:    #18181B (Studio Dark Zinc)
+     Secondary:  #27272A (Studio Accent Zinc)
+     CTA:        #F8FAFC (High-Contrast Pure Studio Light)
+     Background: #000000 (Pure Pitch Black Darkroom)
+     Text:       #FAFAFA (Studio White Text)
+     Accent:     #E5E5E5 (Brushed Aluminum / Optical Gray)
+------------------------------------------------------------------------- */
+
+:root {
+  --font-archivo: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-space-grotesk: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --primary: #18181B;
+  --secondary: #27272A;
+  --cta: #F8FAFC;
+  --background: #000000;
+  --text: #FAFAFA;
+  --accent: #E5E5E5;
+  --studio-border: rgba(255, 255, 255, 0.1);
+  --studio-glass: rgba(24, 24, 27, 0.6);
+  --studio-glow: rgba(248, 250, 252, 0.15);
+}
+
+@theme {
+  --color-primary: #18181B;
+  --color-secondary: #27272A;
+  --color-cta: #F8FAFC;
+  --color-background: #000000;
+  --color-text: #FAFAFA;
+  --color-accent: #E5E5E5;
+  --color-studio-dark: #121214;
+  --color-studio-border: rgba(255, 255, 255, 0.1);
+
+  --font-sans: var(--font-space-grotesk), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-archivo), sans-serif;
+  --font-archivo: var(--font-archivo), sans-serif;
+  --font-space: var(--font-space-grotesk), sans-serif;
+}
+
+/* Base Document Setup */
+html {
+  scroll-behavior: smooth;
+  background-color: #000000;
+  color: #FAFAFA;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #000000;
+  color: #FAFAFA;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom Studio Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3F3F46;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #27272A #000000;
+}
+
+/* Selection Color Styling */
+::selection {
+  background-color: #F8FAFC;
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: #F8FAFC;
+  color: #000000;
+}
+
+/* -------------------------------------------------------------------------
+   GLASS UI EFFECTS
+------------------------------------------------------------------------- */
+.glass-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24, 24, 27, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FAFAFA;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.glass-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.glass-btn:hover {
+  background: rgba(39, 39, 42, 0.85);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(248, 250, 252, 0.18), 0 0 50px rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.glass-btn:hover::before {
+  opacity: 1;
+}
+
+.glass-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.glass-btn-cta {
+  background: #F8FAFC;
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(248, 250, 252, 0.25);
+}
+
+.glass-btn-cta:hover {
+  background: #FFFFFF;
+  color: #000000;
+  box-shadow: 0 0 35px rgba(248, 250, 252, 0.45);
+  transform: translateY(-1px);
+}
+
+.glass-panel {
+  background: rgba(24, 24, 27, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-elevated {
+  background: rgba(24, 24, 27, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* -------------------------------------------------------------------------
+   3D PERSPECTIVE UTILITIES
+------------------------------------------------------------------------- */
+.perspective-1000 {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+  -webkit-perspective: 2000px;
+}
+
+.perspective-none {
+  perspective: none;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.backface-visible {
+  backface-visibility: visible;
+}
+
+/* -------------------------------------------------------------------------
+   GSAP / FRAMER MOTION KEYFRAMES & UTILITIES
+------------------------------------------------------------------------- */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(248, 250, 252, 0.1), 0 0 30px rgba(248, 250, 252, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(248, 250, 252, 0.25), 0 0 60px rgba(248, 250, 252, 0.15);
+  }
+}
+
+@keyframes apertureSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+.animate-aperture-spin {
+  animation: apertureSpin 24s linear infinite;
+}
+
+/* -------------------------------------------------------------------------
+   STUDIO CAMERA AESTHETIC UTILITIES
+------------------------------------------------------------------------- */
+.studio-grid-bg {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+.studio-vignette {
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.studio-reticle {
+  position: relative;
+}
+
+.studio-reticle::before,
+.studio-reticle::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.studio-reticle::before {
+  top: -6px;
+  left: -6px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  border-left: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.studio-reticle::after {
+  bottom: -6px;
+  right: -6px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  border-right: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+/* -------------------------------------------------------------------------
+   PREFERS REDUCED MOTION
+------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
