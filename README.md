@@ -2,7 +2,10 @@
 
 A high-end, futuristic 3D & motion-driven photography and videography shooting studio website template. Built with **Next.js 16**, **TypeScript**, **Tailwind CSS v4**, **Three.js**, **GSAP**, and **Framer Motion**.
 
+[![Live Demo on GitHub Pages](https://img.shields.io/badge/Live_Demo-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://mingstar556.github.io/Studio-template/)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Mingstar556/Studio-template)
+
+> 🌐 **Live Website:** [https://mingstar556.github.io/Studio-template/](https://mingstar556.github.io/Studio-template/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
