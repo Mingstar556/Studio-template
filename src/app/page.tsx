@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Camera, Film, Layers } from "lucide-react";
@@ -69,16 +69,56 @@ const clients = [
 ];
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Fallback if browser requires user interaction
+        });
+      }
+    }
+  }, []);
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-black text-[#fafafa] relative overflow-hidden">
+        {/* Hardware-Accelerated Motion Video Background — Refined Size & Feathered Vignette */}
+        <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
+          <div className="relative w-full max-w-[760px] max-h-[52vh] aspect-[16/10] flex items-center justify-center">
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="w-full h-full object-contain object-center opacity-80 will-change-transform transform-gpu"
+              style={{
+                WebkitMaskImage: "radial-gradient(ellipse 70% 65% at 50% 50%, black 30%, transparent 80%)",
+                maskImage: "radial-gradient(ellipse 70% 65% at 50% 50%, black 30%, transparent 80%)",
+              }}
+            >
+              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4" type="video/mp4" />
+              <source src="/Studio-template/bg-motion.mp4" type="video/mp4" />
+              <source src="/bg-motion.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* Subtle gradient scrim to enhance contrast and readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black pointer-events-none" />
+        </div>
+
         {/* Ambient Studio Lighting Glows */}
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-white/[0.08] via-white/[0.02] to-transparent blur-3xl pointer-events-none rounded-full" />
         <div className="absolute top-40 -left-40 w-96 h-96 bg-zinc-800/20 blur-3xl rounded-full pointer-events-none" />
         <div className="absolute top-60 -right-40 w-96 h-96 bg-zinc-800/20 blur-3xl rounded-full pointer-events-none" />
 
         {/* Hero Section */}
-        <section className="relative pt-16 pb-24 md:pt-24 md:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative z-10 pt-16 pb-24 md:pt-24 md:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center">
             {/* Studio Badge */}
             <motion.div
@@ -155,7 +195,7 @@ export default function Home() {
         </section>
 
         {/* Featured Projects Showcase */}
-        <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/10">
+        <section className="relative z-10 py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <SectionHeading
               badge="SELECTED PORTFOLIO"
@@ -222,7 +262,7 @@ export default function Home() {
         </section>
 
         {/* Studio Spaces Highlights */}
-        <section className="py-24 bg-[#0a0a0a] border-t border-white/10">
+        <section className="relative z-10 py-24 bg-[#0a0a0a]/80 backdrop-blur-sm border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <SectionHeading
@@ -281,7 +321,7 @@ export default function Home() {
         </section>
 
         {/* Client Roster Banner */}
-        <section className="py-16 border-t border-white/10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative z-10 py-16 border-t border-white/10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 shrink-0">
               TRUSTED WORLDWIDE BY
@@ -300,7 +340,7 @@ export default function Home() {
         </section>
 
         {/* Final CTA Banner */}
-        <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative z-10 py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="p-8 sm:p-14 rounded-3xl bg-[#18181B] border border-white/15 text-center flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">
             <div className="relative z-10 max-w-2xl">
               <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 mb-3 block">
